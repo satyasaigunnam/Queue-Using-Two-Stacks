@@ -6,13 +6,31 @@ import java.util.*;
 
 class Queue {
 
+    static Stack<Integer> s1 = new Stack<Integer>();
+    static Stack<Integer> s2 = new Stack<Integer>();
+
+
 
     public Queue() {
+        
 
     }
 
     // Push element x to the back of queue.
     public void enqueue(int x) {
+        while (!s1.isEmpty())
+        {
+            s2.push(s1.pop());
+            
+        }
+        s1.push(x);
+ 
+        
+        while (!s2.isEmpty())
+        {
+            s1.push(s2.pop());
+            
+        }
 
     }
 
