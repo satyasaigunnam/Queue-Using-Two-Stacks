@@ -8,6 +8,7 @@ class Queue {
 
     static Stack<Integer> s1 = new Stack<Integer>();
     static Stack<Integer> s2 = new Stack<Integer>();
+    int i=0;
 
 
 
@@ -36,6 +37,13 @@ class Queue {
 
     // Removes the element from in front of queue.
     public int dequeue() {
+        if(s2.isEmpty()){
+            while(!s1.isEmpty())
+            s2.push(s1.pop());
+        }
+        i++;
+        return s2.pop();
+
 
     }
     
