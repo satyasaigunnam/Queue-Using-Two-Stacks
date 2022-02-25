@@ -4,35 +4,77 @@
 import java.io.*;
 import java.util.*;
 
+
 class Queue {
+
+    static Stack<Integer> stack1 = new Stack<Integer>();
+    static Stack<Integer> stack2 = new Stack<Integer>();
+    int i=0;
+
 
 
     public Queue() {
+        
 
     }
 
     // Push element x to the back of queue.
     public void enqueue(int x) {
+        while (!stack1.isEmpty())
+        {
+            stack2.push(stack1.pop());
+            
+        }
+        stack1.push(x);
+ 
+        
+        while (!stack2.isEmpty())
+        {
+            stack1.push(stack2.pop());
+            
+        }
 
     }
 
     // Removes the element from in front of queue.
-    public int dequeue() {
+    public int dequeue()
+    {
+        if(stack2.isEmpty())
+        {
+            while(!stack1.isEmpty())
+            stack2.push(stack1.pop());
+        }
+        i++;
+        return stack2.pop();
+
 
     }
     
     // Get the front element.
     public int peek() {
+        if(!stack2.isEmpty()){
+            
+            return stack2.peek();
+
+
+        }
+        else {
+           while(stack2.isEmpty())
+           stack2.push(stack1.pop()); 
+        }
+        return stack2.peek();
 
     }
     
     // Return whether the queue is empty.
     public boolean empty() {
+        return stack1.isEmpty()&& stack2.isEmpty();
 
     }
 
     // Return the number of elements in queue.
-    public boolean size() {
+    public int size() {
+        return stack1.size()+stack2.size();
 
     }
     
@@ -49,6 +91,8 @@ class Queue {
                 queue.dequeue();
             } else if (input.charAt(0) == '3') {
                 System.out.println(queue.peek());
+            } else if (input.charAt(0) == '4') {
+                System.out.println(queue.size());
             } 
         }
     }
